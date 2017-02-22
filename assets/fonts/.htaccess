@@ -1,0 +1,16 @@
+<FilesMatch "\.(ttf|otf|eot|woff)$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+  <IfModule header_module>
+	Header set Cache-Control "max-age=604800, public"
+  </IfModule>
+  SetOutputFilter DEFLATE
+</FilesMatch>
+
+<ifModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType font/ttf      "access plus 1 month"
+  ExpiresByType font/woff     "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+</ifModule>
